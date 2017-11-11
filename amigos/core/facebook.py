@@ -32,14 +32,24 @@ def get_user_info(token):
 def get_movies(token):
     requisition = requests.get(GRAPH_URL + "me/movies?" + ACCESS_TOKEN_FIELD + token)
     movies = json.loads(requisition)
-    return movies
+    return movies['data']
 
 def get_books(token):
     requisition = requests.get(GRAPH_URL + "me/books?" + ACCESS_TOKEN_FIELD + token)
     books = json.loads(requisition)
-    return books
+    return books['data']
 
 def get_television(token):
     requisition = requests.get(GRAPH_URL + "me/television?" + ACCESS_TOKEN_FIELD + token)
     television = json.loads(requisition)
-    return television
+    return television['data']
+
+def get_games(token):
+    requisition = requests.get(GRAPH_URL + "me/games?" + ACCESS_TOKEN_FIELD + token)
+    games = json.loads(requisition)
+    return games['data']
+
+def get_music(token):
+    requisition = requests.get(GRAPH_URL + "me/music?" + ACCESS_TOKEN_FIELD + token)
+    music = json.loads(requisition)
+    return music['data']
