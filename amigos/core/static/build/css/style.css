@@ -1301,10 +1301,10 @@ select option {
     background-image: url("/img/img1.jpg");
 
     /* Set a specific height */
-    height: 250px;
+    height: 400px;
 
     /* Create the parallax scrolling effect */
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
