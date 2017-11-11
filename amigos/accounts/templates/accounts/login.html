@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block title %}{{ block.super }} Entrar {% endblock %}
+
+{% block body_class %}login{% endblock body_class %}
+
+{% block body %}
+    <div>
+        <div class="login_wrapper">
+            <div>
+                <section class="login_content">
+                    <form class="form-horizontal" method="post">
+                        {% csrf_token %}
+                        <h1>Login Form</h1>
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                        <fieldset>
+                            <div class="form-group{% if form.username.errors %} has-error{% endif %}">
+                                <div>
+                                    {% render_field form.username class="form-control" placeholder=form.username.label %}
+                                    {% for error in form.username.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="form-group{% if form.password.errors %} has-error{% endif %}">
+                                <div>
+                                    {% render_field form.password class="form-control" placeholder=form.password.label %}
+                                    {% for error in form.password.errors %}
+                                        <span class="help-block">{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div>
+                            <button class="btn btn-default submit">Log in</button>
+                            <a class="reset_pass" href="#">Lost your password?</a>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="separator">
+                            <p class="change_link">New to site?
+                                <a href="{% url 'accounts:register' %}" class="to_register"> Create Account </a>
+                            </p>
+
+                            <div class="clearfix"></div>
+                            <br/>
+
+                            <div>
+                                <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                                <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
+                                    Terms</p>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
