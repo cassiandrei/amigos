@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 import requests
 from core import facebook
 from core import user_config
+from django.contrib.auth import login
 import json
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -28,11 +29,10 @@ def oauth2(request):
         code = request.GET['code']
         dic = facebook.get_token('http://localhost:8000/oauth2/', code)
         token = dic['access_token']
-        #return HttpResponse(token)
         user_config.checkUser(token)
         user = User.objects.get(token_api=token)
-        #return HttpResponse(json.dumps(facebook.get_user_info(token)))
-        return render(request, 'index.html', {'user': user})
+        login(request, user)
+        return redirect('index')
     else:
         return HttpResponseRedirect(facebook.url_to_login('http://localhost:8000/oauth2/'))
 
