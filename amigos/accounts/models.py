@@ -62,6 +62,7 @@ class MatchManager(models.Manager):
         return match
 
     def calc_points(self, user):
+        print("[LOG] Calculando afinidades...")
         all_users = User.objects.all()
         user_books = BookUser.objects.filter(user=user)
         user_music = MusicUser.objects.filter(user=user)
@@ -105,6 +106,7 @@ class MatchManager(models.Manager):
                 match.save()                
 
         total_matches = Match.objects.filter(user_id=user.id)
+        print("[LOG] Afinidades calculadas.")
         return total_matches
 
 
