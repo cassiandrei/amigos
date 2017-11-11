@@ -9,10 +9,11 @@
         <div class="img-circle">
             <a href="{% url 'accounts:perfil' %}">
                 <div class="container" style="padding: 100px!important;">
-                    <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130"
-                         height="130"/>
+                    <a href="{% url 'accounts:perfil' %}">
+                        <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130"
+                             height="130"/>
+                    </a>
                 </div>
-            </a>
         </div>
     </header>
     <div class="container">
@@ -24,7 +25,7 @@
                 <h2 class="card-title" style="margin-bottom: 10px">Seus TOP MATCHES</h2>
                 {#card_relação#}
                 {% for match in matches %}
-                   {% include 'score/match.html' %}
+                    {% include 'score/match.html' %}
                 {% endfor %}
                 {#END card_relação#}
             </div>

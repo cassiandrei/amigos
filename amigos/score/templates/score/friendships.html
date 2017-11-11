@@ -3,19 +3,45 @@
 {% block content %}
     <header class="parallax" style="background-image: url({{ request.user.cover }});">
         <div class="img-circle">
-            <a href="{% url 'accounts:perfil' %}">
-                <div class="container" style="padding: 100px!important;">
+
+            <div class="container" style="padding: 100px!important;">
+                <a href="{% url 'accounts:perfil' %}">
                     <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130"
                          height="130"/>
-                </div>
+                </a>
+            </div>
             </a>
         </div>
     </header>
     <div class="container">
         <h1 style="padding-top: 80px">{{ request.user }}</h1>
     </div>
-    <table class="table">
-        {% for friend in list_friendships %}
+    {% for friend in list_friendships %}
+        <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
+            <div class="well profile_view">
+                <div class="col-sm-12 col-xs-12">
+                    <div class=" col-xs-12 col-md-3 text-center">
+                        <img src="{{ friend.picture }}" alt="" class="img-circle img-responsive">
+                    </div>
+                    <div class="right col-xs-9 text-left">
+                        <h1>{{ friend.name }}</h1>
+                        <p><strong>Common: </strong> Localização, Musicas, Livros, Filmes, Comidas </p>
+                        <ul class="list-unstyled">
+                            <li><i class="fa fa-building"></i> City: Santa Maria</li>
+                        </ul>
+                    </div>
+                </div>
 
-        {% endfor %}
+                <div class="col-xs-6 bottom text-left">
+                    <div class="text-right col-xs-12 col-sm-12 emphasis ">
+                        <a href="">
+                            <button type="button" class="btn btn-primary btn-xs">
+                                <i class="fa fa-user"> </i> Aceitar
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
