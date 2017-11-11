@@ -8,6 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from .models import User
 from .forms import UserAdminCreationForm
 from django.contrib import messages
+from accounts.models import BookUser, GameUser, VideoUser, MusicUser
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -15,7 +16,19 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 
 def perfil(request):
-    return render(request, 'accounts/perfil/perfil.html')
+    books = []
+    games = []
+    videos = []
+    musics = []
+    for i in BookUser.objects.filter(user=request.user):
+        books.append(i.book)
+    for i in GameUser.objects.filter(user=request.user):
+        games.append(i.game)
+    for i in VideoUser.objects.filter(user=request.user):
+        videos.append(i.video)
+    for i in MusicUser.objects.filter(user=request.user):
+        musics.append(i.music)
+    return render(request, 'accounts/perfil/perfil.html', {'books': books,'games': games,'videos':videos,'musics':musics})
 
 
 def register(request):

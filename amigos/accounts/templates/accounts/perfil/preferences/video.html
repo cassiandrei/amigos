@@ -15,7 +15,9 @@
         </div>
         <div class="x_content" style="text-align: left">
             <br />
-            <p>Nome: ipsum</p>
+            {% for i in videos %}
+                <p>{{ i }}</p>
+            {%  endfor %}
             <!--
             <p>lorem ipsum</p>
             <p>lorem ipsum</p>
