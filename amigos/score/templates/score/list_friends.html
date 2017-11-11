@@ -7,9 +7,12 @@
     {% load static %}
     <header class="parallax" style="background-image: url({{ request.user.cover }});">
         <div class="img-circle">
-            <div class="container" style="padding: 100px!important;">
-                <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130" height="130"/>
-            </div>
+            <a href="{% url 'accounts:perfil' %}">
+                <div class="container" style="padding: 100px!important;">
+                    <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130"
+                         height="130"/>
+                </div>
+            </a>
         </div>
     </header>
     <div class="container">
@@ -51,7 +54,7 @@
                                     <button type="button" class="btn btn-primary btn-xs">
                                         <i class="fa fa-user"> </i> View Profile
                                     </button>
-                                    <a href="">
+                                    <a href="{% url 'score:addfriend' %}">
                                         <button type="button" class="btn btn-primary btn-xs">
                                             <i class="fa fa-user"> </i> Add Friend
                                         </button>

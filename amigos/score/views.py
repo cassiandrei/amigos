@@ -9,3 +9,7 @@ def list_friends(request):
     matches = Match.objects.calc_points(user=request.user)
     context = {'matches': matches}
     return render(request, 'score/list_friends.html', context)
+
+
+def addfriend(request):
+    pass

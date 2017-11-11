@@ -7,4 +7,5 @@ from . import views
 
 urlpatterns = [
     url(r'^list$', views.list_friends, name='list'),
+    url(r'^addfriend$', views.addfriend, name='addfriend')
 ]

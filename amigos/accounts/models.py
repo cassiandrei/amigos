@@ -72,7 +72,7 @@ class MatchManager(models.Manager):
                 consulta = User.objects.raw("""
                     ( SELECT b.id FROM User AS u JOIN BookUser AS bu ON bu.id = u.id JOIN Book AS bu.id = b.id WHERE u.id = {user_id} ) INTERSECT ( SELECT b.id FROM Match m JOIN BookUser AS bu ON bu.id = m.id JOIN Book AS b ON b.id = bu.id WHERE m.id = {match_id} )
                 """.format(user_id = user.id, match_id = match.id))
-                match.points = consulta.count()
+                #match.points = consulta.count()
                 # for booku in user_books:
                 #     for bookm in match_books:
                 #         if booku.book.id == bookm.book.id:
