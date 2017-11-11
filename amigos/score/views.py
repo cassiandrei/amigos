@@ -7,4 +7,5 @@ from accounts.models import Match
 @login_required
 def list_friends(request):
     matches = Match.objects.calc_points(user=request.user)
-    return render(request, 'score/list_friends.html', {'matches': matches})
+    context = {'matches': matches}
+    return render(request, 'score/list_friends.html', context)
