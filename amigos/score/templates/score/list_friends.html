@@ -24,45 +24,7 @@
                 <h2 class="card-title" style="margin-bottom: 10px">Seus TOP MATCHES</h2>
                 {#card_relação#}
                 {% for match in matches %}
-                    <div class="col-md-12 col-sm-12 col-xs-12 profile_details">
-                        <div class="well profile_view">
-                            <div class="col-sm-12 col-xs-12">
-                                <div class=" col-xs-12 col-md-3 text-center">
-                                    <img src="{{ match.match.picture }}" alt="" class="img-circle img-responsive">
-                                </div>
-                                <div class="right col-xs-9 text-left">
-                                    <h1>{{ match.match.name }}</h1>
-                                    <p><strong>Common: </strong> Localização, Musicas, Livros, Filmes, Comidas </p>
-                                    <ul class="list-unstyled">
-                                        <li><i class="fa fa-building"></i> City: Santa Maria</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 bottom text-right">
-                                <div class="text-left col-xs-12 col-sm-12 emphasis ">
-                                    <td class="project_progress">
-                                        <div class="progress progress_sm">
-                                            <div class="progress-bar bg-green" role="progressbar"
-                                                 data-transitiongoal="57" style="width: {{ match.points }}%;"></div>
-                                        </div>
-                                        <small>{{ match.points }}% afinidade</small>
-                                    </td>
-                                </div>
-                            </div>
-                            <div class="col-xs-6 bottom text-left">
-                                <div class="text-right col-xs-12 col-sm-12 emphasis ">
-                                    <button type="button" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-user"> </i> View Profile
-                                    </button>
-                                    <a href="{% url 'score:addfriend' match.match_id %}">
-                                        <button type="button" class="btn btn-primary btn-xs">
-                                            <i class="fa fa-user"> </i> Add Friend
-                                        </button>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   {% include 'score/match.html' %}
                 {% endfor %}
                 {#END card_relação#}
             </div>

@@ -16,30 +16,6 @@
     </div>
     <table class="table">
         {% for friend in list_friendships %}
-            <thead>
-            <tr>
-                <th></th>
-                <th>Nome</th>
-                <th>Situação</th>
-                <th>Gerenciar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for pagamento in pendentes %}
-                <tr>
-                    <td>{{ pagamento.data.ano }}/{{ pagamento.data.mes }}/{{ pagamento.dia }}</td>
-                    <td>{{ pagamento.cliente.nome }}</td>
-                    <td {% if pagamento.status == 'atrasado' %}class="alert-danger" {% endif %}>{{ pagamento.get_status_display }}
-                        | {{ pagamento.valor|floatformat:2 }}</td>
-                    <td>
-                        <form action="{% url 'mensalidade_cliente' slug pagamento.cliente.cpf %}"
-                              method="post">{% csrf_token %}
-                            <button class="btn-mini btn-success">Gerenciar</button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-            </table>
+
         {% endfor %}
 {% endblock %}

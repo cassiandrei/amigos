@@ -23,7 +23,7 @@ def get_token(url, code):
     return json.loads(requisition.text)
 
 def get_user_info(token):
-    requisition = requests.get(GRAPH_URL + "me" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture")
+    requisition = requests.get(GRAPH_URL + "me" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture,link")
     user_info = json.loads(requisition.text)
     #print(user_info['picture'])
     user_info["cover"] = user_info["cover"]["source"]
