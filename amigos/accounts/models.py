@@ -26,7 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
 
     # Token facebook
-    token_api = models.CharField('Token', max_length=300, null=False)
+    token_api = models.CharField('Token', max_length=300, null=False, unique=True)
 
     USERNAME_FIELD = 'username'
     # REQUIRED_FIELDS = ['email']
@@ -36,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
+        unique_together = ['id', 'token_api']
 
     def __str__(self):
         return self.name or self.username
