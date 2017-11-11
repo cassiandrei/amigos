@@ -38,8 +38,8 @@ Como features do projeto pretende-se adicionar formas de monetização ao softwa
 * Monitoramento e análise dos dados gerados pela interação usuário-aplicação, uma alternativa seria o (**Google Analytics**)[https://www.google.com.br/intl/pt-BR_ALL/analytics/learn/index.html]  
 
 
-<p align="center">
+<center>
   <h4>Projeto desenvolvido pela equipe Chuhaskell</h4>
   <br>
   <img src="prints/chuhaskell.jpg">
-</p>
+</center>
