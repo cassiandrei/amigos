@@ -29,11 +29,9 @@ def oauth2(request):
         code = request.GET['code']
         dic = facebook.get_token('http://localhost:8000/oauth2/', code)
         token = dic['access_token']
-        #return HttpResponse(token)
         user_config.checkUser(token)
         user = User.objects.get(token_api=token)
         login(request, user)
-        #return HttpResponse(json.dumps(facebook.get_user_info(token)))
         return redirect('index')
     else:
         return HttpResponseRedirect(facebook.url_to_login('http://localhost:8000/oauth2/'))
