@@ -22,10 +22,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     name = models.CharField('Nome', max_length=100, blank=True)
     email = models.EmailField('E-mail', unique=True)
+    fb_id = models.IntegerField('fb_id', unique=True)
     is_staff = models.BooleanField('Equipe', default=False)
     is_active = models.BooleanField('Ativo', default=True)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
 
+    picture = models.CharField(verbose_name='Picture', max_length=300, default='https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png')
+    cover = models.CharField(verbose_name='Cover', max_length=300, default='https://jornalismoespecializadounesp.files.wordpress.com/2014/04/capas-para-facebook-capa-facebook-777366.jpg')
     # Token facebook
     token_api = models.CharField('Token', max_length=300, null=False)
 
@@ -52,9 +55,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 class MatchManager(models.Manager):
     def getcreate(self, user, match):
         try:
-            match = Match.objects.get(user_id=user.id, match_id=match.id)
+            match = Match.objects.get(user_id=user.id, match=match)
         except ObjectDoesNotExist:
-            match = Match.objects.create(user_id=user.id, match_id=match.id)
+            match = Match.objects.create(user_id=user.id, match=match)
         return match
 
     def calc_points(self, user):
@@ -80,7 +83,7 @@ class MatchManager(models.Manager):
 class Match(models.Model):
     points = models.IntegerField(default=0)
     user_id = models.IntegerField(null=False)
-    match_id = models.IntegerField(null=False)
+    match = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Match"

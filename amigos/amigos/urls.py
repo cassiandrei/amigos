@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^conta/', include('accounts.urls', namespace='accounts')),
     url(r'^score/', include('score.urls', namespace='score')),
     url(r'^admin/', admin.site.urls),
+    url(r'^oauth2/', views.oauth2, name='oauth2'),
+    url(r'^inicio/', views.inicial, name='inicial')
 ]
 
 if settings.DEBUG:
