@@ -63,6 +63,7 @@ class MatchManager(models.Manager):
         for current_user in all_users:
             if current_user.id != user.id:
                 match = self.getcreate(user=user, match=current_user)
+                match.points = 0
                 match_books = BookUser.objects.filter(user=current_user)
                 for booku in user_books:
                     for bookm in match_books:
@@ -127,7 +128,6 @@ class GameUser(models.Model):
 class BookUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
-
 
 class MusicUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
