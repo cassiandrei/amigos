@@ -22,7 +22,7 @@ def checkUser(token):
         print('usuario ja existe')
     except:
         #Se nao, cria novo
-        new_user = User.objects.create(name=name,email=email,token_api=token, picture=picture, cover=cover, fb_id=fb_id)
+        new_user = User.objects.create(username=fb_id, name=name,email=email,token_api=token, picture=picture, cover=cover, fb_id=fb_id)
         new_user.save()
         insertBooks(token, fb_id)
         insertGames(token, fb_id)
