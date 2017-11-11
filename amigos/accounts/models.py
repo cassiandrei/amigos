@@ -8,7 +8,6 @@ from django.contrib.auth.models import AbstractBaseUser, UserManager, Permission
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-
     username = models.CharField(
         'Apelido / Usuário', max_length=30, unique=True, validators=[
             validators.RegexValidator(
@@ -30,7 +29,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     token_api = models.CharField('Token', max_length=300, null=False)
 
     USERNAME_FIELD = 'username'
-    #REQUIRED_FIELDS = ['email']
+    # REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
@@ -47,47 +46,72 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return str(self).split(" ")[0]
 
+
+class MatchManager(models.Manager):
+    def getcreate(self, user, match):
+        try:
+            match = Match.objects.get(user=user, match=match)
+        except ObjectDoesNotExist:
+            match = Match.objects.create(user=user, match=match)
+        return match
+
+    def calc_points(self, user):
+        all_users = User.objects.all()
+        for current_user in all_users:
+            match = self.getcreate(user=user, match=current_user)
+
+
 # Relacoes entre amigos
 class Match(models.Model):
-    points = models.IntegerField()
+    points = models.IntegerField(default=0)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     match = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Match"
         verbose_name_plural = "Matches"
+        ordering = ['-points']
+
+    objects = MatchManager()
+
 
 # Tabelas dos gostos
 class Books(models.Model):
     id_api = models.IntegerField()
     name = models.CharField('Nome', max_length=300, null=False)
 
+
 class Games(models.Model):
     id_api = models.IntegerField()
     name = models.CharField('Nome', max_length=300, null=False)
+
 
 class Musics(models.Model):
     id_api = models.IntegerField()
     name = models.CharField('Nome', max_length=300, null=False)
 
+
 class Videos(models.Model):
     id_api = models.IntegerField()
     name = models.CharField('Nome', max_length=300, null=False)
+
 
 # Relações NxN
 class VideoUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     video = models.ForeignKey(Videos, on_delete=models.CASCADE)
 
+
 class GameUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Games, on_delete=models.CASCADE)
+
 
 class BookUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Books, on_delete=models.CASCADE)
 
+
 class MusicUser(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     music = models.ForeignKey(Musics, on_delete=models.CASCADE)
-
