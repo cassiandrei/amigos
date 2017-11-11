@@ -8,6 +8,7 @@ Similars, uma rede social que tem por objetivo aproximar as pessoas por seus int
 
 ## Estrutura do projeto
 O projeto do **Similars** foi desenvolvido obedecendo a seguinte divisão:
+
 ### Autenticação
 ### Captura das informações dos usuários
 ### Interface
@@ -34,3 +35,9 @@ Como features do projeto pretende-se adicionar formas de monetização ao softwa
 
 * Monitoramento e análise dos dados gerados pela interação usuário-aplicação, uma alternativa seria o (**Google Analytics**)[https://www.google.com.br/intl/pt-BR_ALL/analytics/learn/index.html]  
 
+
+<p align="center">
+  <h4>Projeto desenvolvido pela equipe Chuhaskell</h4>
+  <br>
+  <img src="images/chuhaskell.jpg">
+</p>
