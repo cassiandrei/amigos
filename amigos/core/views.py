@@ -16,6 +16,11 @@ class IndexView(LoginRequiredMixin, TemplateView):
 index = IndexView.as_view()
 
 def inicial(request):
+    user = User.objects.all()
+    print('oi')
+    for u in user:
+        print(u.name)
+
     return render(request, 'inicial.html')
 
 def oauth2(request):
@@ -24,7 +29,7 @@ def oauth2(request):
         dic = facebook.get_token('http://localhost:8000/oauth2/', code)
         token = dic['access_token']
         #return HttpResponse(token)
-        #user_config.checkUser(token)
+        user_config.checkUser(token)
         #return HttpResponse(json.dumps(facebook.get_user_info(token)))
         return render(request, 'index.html')
     else:
