@@ -58,3 +58,9 @@ def list_solicitations(request):
     context = {'list_friendships': solicitations}
     return render(request, 'score/friendships.html', context)
 
+@login_required
+def accept(request, id):
+    friendship = Friendship.objects.get(user_id=id, friend=request.user)
+    friendship.accept = True
+    friendship.save()
+    messages.success(request, 'Convite aceito com sucesso')

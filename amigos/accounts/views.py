@@ -35,6 +35,24 @@ def perfil(request):
     return render(request, 'accounts/perfil/perfil.html', {'books': books,'games': games,'videos':videos,'musics':musics})
 
 
+def friend_perfil(request, id):
+    user = User.objects.get(id=id)
+    books = []
+    games = []
+    videos = []
+    musics = []
+    for i in BookUser.objects.filter(user=user):
+        books.append(i.book)
+    for i in GameUser.objects.filter(user=user):
+        games.append(i.game)
+    for i in VideoUser.objects.filter(user=user):
+        videos.append(i.video)
+    for i in MusicUser.objects.filter(user=user):
+        musics.append(i.music)
+    return render(request, 'accounts/perfil/perfil.html',
+                  {'books': books, 'games': games, 'videos': videos, 'musics': musics, 'user': user})
+
+
 def register(request):
     form = UserAdminCreationForm()
     if request.method == 'POST':
