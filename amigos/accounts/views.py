@@ -21,14 +21,36 @@ def perfil(request):
     videos = []
     musics = []
     for i in BookUser.objects.filter(user=request.user):
-        books.append(i.book)
+        n = BookUser.objects.filter(book_id=i.id).count()
+        books.append([i.book, n])
     for i in GameUser.objects.filter(user=request.user):
-        games.append(i.game)
+        n = GameUser.objects.filter(game_id=i.id).count()
+        games.append([i.game,n])
     for i in VideoUser.objects.filter(user=request.user):
-        videos.append(i.video)
+        n = VideoUser.objects.filter(video_id=i.id).count()
+        videos.append([i.video,n])
     for i in MusicUser.objects.filter(user=request.user):
-        musics.append(i.music)
+        n = MusicUser.objects.filter(music_id=i.id).count()
+        musics.append([i.music,n])
     return render(request, 'accounts/perfil/perfil.html', {'books': books,'games': games,'videos':videos,'musics':musics})
+
+
+def friend_perfil(request, id):
+    user = User.objects.get(id=id)
+    books = []
+    games = []
+    videos = []
+    musics = []
+    for i in BookUser.objects.filter(user=user):
+        books.append(i.book)
+    for i in GameUser.objects.filter(user=user):
+        games.append(i.game)
+    for i in VideoUser.objects.filter(user=user):
+        videos.append(i.video)
+    for i in MusicUser.objects.filter(user=user):
+        musics.append(i.music)
+    return render(request, 'accounts/perfil/perfil.html',
+                  {'books': books, 'games': games, 'videos': videos, 'musics': musics, 'user': user})
 
 
 def register(request):

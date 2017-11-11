@@ -25,9 +25,11 @@
         </div>
         <div class="col-xs-6 bottom text-left">
             <div class="text-right col-xs-12 col-sm-12 emphasis ">
-                <button type="button" class="btn btn-primary btn-xs">
-                    <i class="fa fa-user"> </i> View Profile
-                </button>
+                <a href="{% url 'accounts:friend_perfil' match.match_id %}">
+                    <button type="button" class="btn btn-primary btn-xs">
+                        <i class="fa fa-user"> </i> View Profile
+                    </button>
+                </a>
                 <a href="{% url 'score:addfriend' match.match_id %}">
                     <button type="button" class="btn btn-primary btn-xs">
                         <i class="fa fa-user"> </i> Add Friend
