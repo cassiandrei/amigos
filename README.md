@@ -15,6 +15,9 @@ Usuários do sistema dispõem do serviço integrado de autenticação com o Face
 O sistema realiza uma busca entre os usuários cadastrados, procurando os usuários com maior afinidade e listando-o em ordem descrescente de afinidade. Conhecer pessoas novas com gostos semelhantes aos teus não é mais uma tarefa cansativa! São considerados _likes_ em itens relacionados à entretenimento em geral, entre eles: músicas, vídeos, games e livros.
 ### Interface
 
+A interface foi desenvolvida usando recursos web, como HTML5, Javascript e CSS3. Como base de framework, foi usado o Bootstrap.
+O template Gentella faz parte de algumas implementações do Similars, como cards de exibição e a estrutura base da aplicação. Além do Gentella, utilizamos recuros desenvolvidos pela próppria equipe, como por exemplo a exibição de perfil do usuário e sua "capa de perfil", dos quais estão desenvolvidos em HTML5 e estilizados com recursos de css3
+
 ## Recursos utilizados
 
 O projeto destina-se a ser uma aplicação web responsivo, desenvolvido por meio da utilização do framework web [Django](https://www.djangoproject.com/), em sua versão 1.11.5.
