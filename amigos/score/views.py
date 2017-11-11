@@ -9,3 +9,8 @@ def list_friends(request):
     matches = Match.objects.calc_points(user=request.user)
     context = {'matches': matches}
     return render(request, 'score/list_friends.html', context)
+
+@login_required
+def list_solicitations(request):
+
+    return render(request, 'solicitations.html')
