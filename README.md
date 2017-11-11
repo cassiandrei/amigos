@@ -3,14 +3,16 @@
 Similars, uma rede social que tem por objetivo aproximar as pessoas por seus interesses, gostos e forma de viver. Uma forma de resignificar as relações criadas virtualmente, estimulando interações reais entre as pessoas, conectando-as não somente virtualmente mas também na realidade.
 
 <p align="center">
-  <img alt="VS Code in action" src="https://cloud.githubusercontent.com/assets/11839736/16642200/6624dde0-43bd-11e6-8595-c81885ba0dc2.png">
+  <img alt="VS Code in action" src="prints/login.png">
 </p>
 
 ## Estrutura do projeto
 O projeto do **Similars** foi desenvolvido obedecendo a seguinte divisão:
 
 ### Autenticação
+Usuários do sistema dispõem do serviço integrado de autenticação com o Facebook: Nenhum processo exaustivo de criação de conta é requerido, basta aceitar as permissões pedidas pela aplicação e tudo fica pronto num piscar de olhos!
 ### Captura das informações dos usuários
+O sistema realiza uma busca entre os usuários cadastrados, procurando os usuários com maior afinidade e listando-o em ordem descrescente de afinidade. Conhecer pessoas novas com gostos semelhantes aos teus não é mais uma tarefa cansativa! São considerados _likes_ em itens relacionados à entretenimento em geral, entre eles: músicas, vídeos, games e livros.
 ### Interface
 
 ## Recursos utilizados

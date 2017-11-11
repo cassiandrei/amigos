@@ -42,13 +42,17 @@ def friend_perfil(request, id):
     videos = []
     musics = []
     for i in BookUser.objects.filter(user=user):
-        books.append(i.book)
+        n = BookUser.objects.filter(book_id=i.id).count()
+        books.append([i.book, n - 1])
     for i in GameUser.objects.filter(user=user):
-        games.append(i.game)
+        n = GameUser.objects.filter(game_id=i.id).count()
+        games.append([i.game, n - 1])
     for i in VideoUser.objects.filter(user=user):
-        videos.append(i.video)
+        n = VideoUser.objects.filter(video_id=i.id).count()
+        videos.append([i.video, n - 1])
     for i in MusicUser.objects.filter(user=user):
-        musics.append(i.music)
+        n = MusicUser.objects.filter(music_id=i.id).count()
+        musics.append([i.music, n - 1])
     return render(request, 'accounts/perfil/perfil.html',
                   {'books': books, 'games': games, 'videos': videos, 'musics': musics, 'user': user})
 
