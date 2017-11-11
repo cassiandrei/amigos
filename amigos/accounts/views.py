@@ -22,16 +22,16 @@ def perfil(request):
     musics = []
     for i in BookUser.objects.filter(user=request.user):
         n = BookUser.objects.filter(book_id=i.id).count()
-        books.append([i.book, n])
+        books.append([i.book, n-1])
     for i in GameUser.objects.filter(user=request.user):
         n = GameUser.objects.filter(game_id=i.id).count()
-        games.append([i.game,n])
+        games.append([i.game,n-1])
     for i in VideoUser.objects.filter(user=request.user):
         n = VideoUser.objects.filter(video_id=i.id).count()
-        videos.append([i.video,n])
+        videos.append([i.video,n-1])
     for i in MusicUser.objects.filter(user=request.user):
         n = MusicUser.objects.filter(music_id=i.id).count()
-        musics.append([i.music,n])
+        musics.append([i.music,n-1])
     return render(request, 'accounts/perfil/perfil.html', {'books': books,'games': games,'videos':videos,'musics':musics})
 
 
