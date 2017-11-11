@@ -6,7 +6,7 @@ from accounts.models import User, Match, MatchManager
 
 class Friendship(models.Model):
     user_id = models.IntegerField(null=False)
-    friend_id = models.IntegerField(null=False)
+    friend = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Friendship"

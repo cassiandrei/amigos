@@ -15,13 +15,17 @@ def list_friends(request):
 @login_required
 def addfriend(request, id):
     friend = User.objects.get(id=id)
-    Friendship.objects.get_or_create(user_id=request.user.id, friend_id=friend.id)
+    Friendship.objects.get_or_create(user_id=request.user.id, friend=friend)
     messages.success(request, 'Solicitação enviada com sucesso')
     return redirect('index')
 
 @login_required
 def list_solicitations(request):
-    list = Friendship.objects.filter(friend_id=request.user.id)
-    context = {'list_friendships': list}
+    list = Friendship.objects.filter(friend=request.user)
+    solicitations = []
+    for solicitation in list:
+        solicitations.append(User.objects.get(id=solicitation.user_id))
+    print(len(solicitations))
+    context = {'list_friendships': solicitations}
     return render(request, 'score/friendships.html', context)
 
