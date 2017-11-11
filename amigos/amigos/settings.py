@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # apps
     'core',
     'accounts',
+    'score',
     # libs
     'widget_tweaks'
 ]

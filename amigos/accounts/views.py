@@ -1,32 +1,35 @@
 # coding=utf-8
-
-from django.shortcuts import render
-from django.views.generic import (
-    CreateView, TemplateView, UpdateView, FormView
-)
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from django.views.generic import (TemplateView, UpdateView, FormView)
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import PasswordChangeForm
-
 from .models import User
 from .forms import UserAdminCreationForm
+from django.contrib import messages
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
-
     template_name = 'accounts/index.html'
 
 
-class RegisterView(CreateView):
+def perfil(request):
+    return render(request, 'accounts/perfil/perfil.html')
 
-    model = User
-    template_name = 'accounts/register.html'
-    form_class = UserAdminCreationForm
-    success_url = reverse_lazy('index')
+
+def register(request):
+    form = UserAdminCreationForm()
+    if request.method == 'POST':
+        form = UserAdminCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Conta criada com sucesso')
+            return redirect('login')
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 class UpdateUserView(LoginRequiredMixin, UpdateView):
-
     model = User
     template_name = 'accounts/update_user.html'
     fields = ['name', 'email']
@@ -37,7 +40,6 @@ class UpdateUserView(LoginRequiredMixin, UpdateView):
 
 
 class UpdatePasswordView(LoginRequiredMixin, FormView):
-
     template_name = 'accounts/update_password.html'
     success_url = reverse_lazy('accounts:index')
     form_class = PasswordChangeForm
@@ -53,6 +55,5 @@ class UpdatePasswordView(LoginRequiredMixin, FormView):
 
 
 index = IndexView.as_view()
-register = RegisterView.as_view()
 update_user = UpdateUserView.as_view()
 update_password = UpdatePasswordView.as_view()

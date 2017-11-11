@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 from accounts.models import User
 from django.http import HttpResponseRedirect, HttpResponse
@@ -34,3 +34,7 @@ def oauth2(request):
         return render(request, 'index.html')
     else:
         return HttpResponseRedirect(facebook.url_to_login('http://localhost:8000/oauth2/'))
+
+def index(request):
+    return redirect('score/list')
+
