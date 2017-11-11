@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^entrar/$', login, {'template_name': 'accounts/login.html'}, name='login'),
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^conta/', include('accounts.urls', namespace='accounts')),
+    url(r'^score/', include('score.urls', namespace='score')),
     url(r'^admin/', admin.site.urls),
 ]
 
