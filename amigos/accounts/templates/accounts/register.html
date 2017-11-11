@@ -11,6 +11,11 @@
         <div class="login_wrapper">
             <div>
                 <section class="login_content">
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
                     <form class="form-horizontal" method="post">
                         {% csrf_token %}
                         <h1>Create Account</h1>
