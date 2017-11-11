@@ -29,11 +29,11 @@
 {#                </div>#}
 {#            {% endblock sidebar %}#}
 
-{#            {% block top_navigation %}#}
-{#                <div class="top_nav">#}
-{#                    {% include "partial/top_navegation.html" %}#}
-{#                </div>#}
-{#            {% endblock top_navigation %}#}
+            {% block top_navigation %}
+                <div class="top_nav">
+                    {% include "partial/top_navegation.html" %}
+                </div>
+            {% endblock top_navigation %}
 
             <div class="right_col" role="main">
                 <div class="">
@@ -60,10 +60,8 @@
 {#            {% endblock footer %}#}
         </div>
     </div>
-
     {% block javascripts %}
          {% include "partial/scripts.html" %}
-
     {% endblock %}
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.js' %}"></script>
