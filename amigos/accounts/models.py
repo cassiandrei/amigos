@@ -120,6 +120,7 @@ class Match(models.Model):
         verbose_name = "Match"
         verbose_name_plural = "Matches"
         ordering = ['-points']
+        unique_together = ['user_id', 'match']
 
     objects = MatchManager()
 
@@ -136,17 +137,20 @@ class Books(models.Model):
 class Games(models.Model):
     id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
-
+    def __str__(self):
+        return self.name
 
 class Musics(models.Model):
     id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
-
+    def __str__(self):
+        return self.name
 
 class Videos(models.Model):
     id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
-
+    def __str__(self):
+        return self.name
 
 # Relações NxN
 class VideoUser(models.Model):

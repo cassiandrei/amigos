@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Solicitations{% endblock %}
+{% block content %}
+    <header class="parallax" style="background-image: url({{ request.user.cover }});">
+        <div class="img-circle">
+            <a href="{% url 'accounts:perfil' %}">
+                <div class="container" style="padding: 100px!important;">
+                    <img src="{{ request.user.picture }}" class="img-circle" alt="Cinque Terre" width="130"
+                         height="130"/>
+                </div>
+            </a>
+        </div>
+    </header>
+    <div class="container">
+        <h1 style="padding-top: 80px">{{ request.user }}</h1>
+    </div>
+    <table class="table">
+        {% for friend in list_friendships %}
+
+        {% endfor %}
+{% endblock %}
