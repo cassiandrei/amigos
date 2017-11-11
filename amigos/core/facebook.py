@@ -47,3 +47,8 @@ def get_likes(token, items):
         else:
             url = None
     return full_list
+
+def get_page_picture(token, page_id):
+    url = GRAPH_URL + page_id + "/picture" + ACCESS_TOKEN_FIELD + token
+    requisition = requests.get(url).text
+    return json.loads(requisition)["data"]["url"]
