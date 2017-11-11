@@ -13,13 +13,14 @@ def url_to_login(url):
         scope = SCOPE
     )
 
-def url_to_token(url, code):
-    return "https://graph.facebook.com/oauth/access_token?client_id={client_id}&redirect_uri={url}&client_secret={client_secret}&code={code}".format(
+def get_token(url, code):
+    requisition = requests.get("https://graph.facebook.com/oauth/access_token?client_id={client_id}&redirect_uri={url}&client_secret={client_secret}&code={code}".format(
         client_id = CLIENT_ID,
         url = url,
         client_secret = CLIENT_SECRET,
         code = code
-    )
+    ))
+    return json.loads(requisition.text)
 
 def get_user_info(token):
     requisition = requests.get(GRAPH_URL + "me?" + ACCESS_TOKEN_FIELD + token)
