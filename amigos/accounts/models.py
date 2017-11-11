@@ -26,6 +26,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField('Equipe', default=False)
     is_active = models.BooleanField('Ativo', default=True)
     date_joined = models.DateTimeField('Data de Entrada', auto_now_add=True)
+    link = models.CharField(verbose_name='Link', max_length=300, default='')
 
     picture = models.CharField(verbose_name='Picture', max_length=300, default='https://openclipart.org/image/2400px/svg_to_png/211821/matt-icons_preferences-desktop-personal.png')
     cover = models.CharField(verbose_name='Cover', max_length=300, default='https://jornalismoespecializadounesp.files.wordpress.com/2014/04/capas-para-facebook-capa-facebook-777366.jpg')
@@ -61,26 +62,51 @@ class MatchManager(models.Manager):
         return match
 
     def calc_points(self, user):
+        print("[LOG] Calculando afinidades...")
         all_users = User.objects.all()
         user_books = BookUser.objects.filter(user=user)
+        user_music = MusicUser.objects.filter(user=user)
+        user_games = GameUser.objects.filter(user=user)
+        user_videos = VideoUser.objects.filter(user=user)
         for current_user in all_users:
             if current_user.id != user.id:
                 match = self.getcreate(user=user, match=current_user)
                 match.points = 0
-                match_books = BookUser.objects.filter(user=current_user)
-                match.save()
-                consulta = User.objects.raw("""
-                    ( SELECT b.id FROM User AS u JOIN BookUser AS bu ON bu.id = u.id JOIN Book AS bu.id = b.id WHERE u.id = {user_id} ) INTERSECT ( SELECT b.id FROM Match m JOIN BookUser AS bu ON bu.id = m.id JOIN Book AS b ON b.id = bu.id WHERE m.id = {match_id} )
-                """.format(user_id = user.id, match_id = match.id))
-                match.points = consulta.count()
-                # for booku in user_books:
-                #     for bookm in match_books:
-                #         if booku.book.id == bookm.book.id:
-                #             match.points += 1
-                print(match.points)
+                total_points = 0
 
+                match_books = BookUser.objects.filter(user=current_user)
+                total_points += user_books.count()
+                for a in user_books:
+                    for b in match_books:
+                        if a.book.id == b.book.id:
+                            match.points += 1
+                
+                match_videos = VideoUser.objects.filter(user=current_user)
+                total_points += user_videos.count()
+                for a in user_videos:
+                    for b in match_videos:
+                        if a.video.id == b.video.id:
+                            match.points += 1
+                
+                match_games = GameUser.objects.filter(user=current_user)
+                total_points += user_games.count()
+                for a in user_games:
+                    for b in match_games:
+                        if a.game.id == b.game.id:
+                            match.points += 1
+                
+                match_music = MusicUser.objects.filter(user=current_user)
+                total_points += user_music.count()
+                for a in user_music:
+                    for b in match_music:
+                        if a.music.id == b.music.id:
+                            match.points += 1
+                
+                match.points = match.points * 100 // total_points
+                match.save()                
 
         total_matches = Match.objects.filter(user_id=user.id)
+        print("[LOG] Afinidades calculadas.")
         return total_matches
 
 
@@ -100,7 +126,7 @@ class Match(models.Model):
 
 # Tabelas dos gostos
 class Books(models.Model):
-    id_api = models.IntegerField()
+    id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
 
     def __str__(self):
@@ -108,19 +134,19 @@ class Books(models.Model):
 
 
 class Games(models.Model):
-    id_api = models.IntegerField()
+    id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
     def __str__(self):
         return self.name
 
 class Musics(models.Model):
-    id_api = models.IntegerField()
+    id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
     def __str__(self):
         return self.name
 
 class Videos(models.Model):
-    id_api = models.IntegerField()
+    id_api = models.IntegerField(unique=True)
     name = models.CharField('Nome', max_length=300, null=False)
     def __str__(self):
         return self.name

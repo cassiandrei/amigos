@@ -23,7 +23,7 @@ def get_token(url, code):
     return json.loads(requisition.text)
 
 def get_user_info(token):
-    requisition = requests.get(GRAPH_URL + "me" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture")
+    requisition = requests.get(GRAPH_URL + "me" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture,link")
     user_info = json.loads(requisition.text)
     #print(user_info['picture'])
     user_info["cover"] = user_info["cover"]["source"]
@@ -47,3 +47,8 @@ def get_likes(token, items):
         else:
             url = None
     return full_list
+
+def get_page_picture(token, page_id):
+    url = GRAPH_URL + page_id + "/picture" + ACCESS_TOKEN_FIELD + token
+    requisition = requests.get(url).text
+    return json.loads(requisition)["data"]["url"]
