@@ -4,24 +4,39 @@
 {% block title %}{{ block.super }} Entrar {% endblock %}
 {% block body_class %}login{% endblock body_class %}
 {% block body %}
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <div style="height: 100%;background: url('{% static 'build/images/ini.jpg'%}');background-position: center center;">
+
         <div class="login-page">
-          <div class="form" style="top: 210px;">
-          <h1>HUEFRIENDS</h1>
-          <br/>
-              {% for message in messages %}
-                  <div class="alert alert-{{ message.tags }}">
-                      {{ message }}
-                  </div>
-              {% endfor %}
-              <form class="login-form" action="{% url 'oauth2' %}">
-                  <button>ENTRAR COM FACEBOOK <i class="fa fa-facebook-official" style="color: #fff"></i></button>
-              </form>
-          </div>
+            <div class="text-center" style="position: absolute">
+                <h1 style="font-size: 58px; color: #111">Aproximando <strong>interesses</strong>...<br/>
+                Criando <strong> Amizades</strong></h1>
+            </div>
+            <div class="form" style="top: 210px;">
+                <h1>SIMILAR's</h1>
+                <br/>
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <form class="login-form" action="{% url 'oauth2' %}">
+                    <button>ENTRAR COM FACEBOOK <i class="fa fa-facebook-official" style="color: #fff"></i></button>
+                </form>
+            </div>
         </div>
     </div>
     <style>
-    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+    @import url(https://fonts.googleapis.com/css?family=Pacifico);
+    /* latin-ext */
+@font-face h1 {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v12/6RfRbOG3yn4TnWVTc898ERTbgVql8nDJpwnrE27mub0.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
 
 .login-page {
   width: 360px;

@@ -22,13 +22,6 @@
 {% block body %}
     <div class="container">
         <div class="main_container">
-
-{#            {% block sidebar %}#}
-{#                <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">#}
-{#                    {% include "partial/sidebar.html" %}#}
-{#                </div>#}
-{#            {% endblock sidebar %}#}
-
             {% block top_navigation %}
                 <div class="top_nav">
                     {% include "partial/top_navegation.html" %}
@@ -36,17 +29,13 @@
             {% endblock top_navigation %}
 
             <div class="right_col" role="main">
-                <div class="">
-{#                    <div class="page-title">#}
-{#                        <div class="title_left">#}
-{#                            <h3>{% block titulo %}{% endblock %}</h3>#}
-{#                        </div>#}
-{#                    </div>#}
                     <div class="clearfix"></div>
                     {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
+                        <div style="margin-top: 40px!important;">
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        </div>
                     {% endfor %}
                     {% block content %}
                         <!-- {{ content }} -->
