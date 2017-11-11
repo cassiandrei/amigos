@@ -21,11 +21,11 @@
             <div class="well profile_view">
                 <div class="col-sm-12 col-xs-12">
                     <div class=" col-xs-12 col-md-3 text-center">
-                        <img src="{{ friend.picture }}" alt="" class="img-circle img-responsive">
+                        <img src="{{ friend.0.picture }}" alt="" class="img-circle img-responsive">
                     </div>
                     <div class="right col-xs-9 text-left">
-                        <h1>{{ friend.name }}</h1>
-                        <p><strong>Common: </strong> Localização, Musicas, Livros, Filmes, Comidas </p>
+                        <h1>{{ friend.0.name }}</h1>
+                        <p><strong>Common: </strong> {{ friend.1 }} </p>
                         <ul class="list-unstyled">
                             <li><i class="fa fa-building"></i> City: Santa Maria</li>
                         </ul>
