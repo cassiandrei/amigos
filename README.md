@@ -3,7 +3,7 @@
 Similars, uma rede social que tem por objetivo aproximar as pessoas por seus interesses, gostos e forma de viver. Uma forma de resignificar as relações criadas virtualmente, estimulando interações reais entre as pessoas, conectando-as não somente virtualmente mas também na realidade.
 
 <p align="center">
-  <img alt="VS Code in action" src="https://cloud.githubusercontent.com/assets/11839736/16642200/6624dde0-43bd-11e6-8595-c81885ba0dc2.png">
+  <img alt="VS Code in action" src="prints/login.png">
 </p>
 
 ## Estrutura do projeto
