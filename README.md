@@ -3,7 +3,7 @@
 Similars, uma rede social que tem por objetivo aproximar as pessoas por seus interesses, gostos e forma de viver. Uma forma de resignificar as relações criadas virtualmente, estimulando interações reais entre as pessoas, conectando-as não somente virtualmente mas também na realidade.
 
 <p align="center">
-  <img alt="VS Code in action" src="prints/login.png">
+  <img alt="Similars" src="prints/login.png">
 </p>
 
 ## Estrutura do projeto
@@ -41,5 +41,5 @@ Como features do projeto pretende-se adicionar formas de monetização ao softwa
 <p align="center">
   <h4>Projeto desenvolvido pela equipe Chuhaskell</h4>
   <br>
-  <img src="images/chuhaskell.jpg">
+  <img src="prints/chuhaskell.jpg">
 </p>
