@@ -2,6 +2,8 @@
 
 Similars, uma rede social que tem por objetivo aproximar as pessoas por seus interesses, gostos e forma de viver. Uma forma de resignificar as relações criadas virtualmente, estimulando interações reais entre as pessoas, conectando-as não somente virtualmente mas também na realidade.
 
+## Screenshots
+
 <p align="center">
   <img alt="Similars" src="prints/friendship.png">
   <img alt="Similars" src="prints/matches.png">
@@ -42,7 +44,7 @@ Como features do projeto pretende-se adicionar formas de monetização ao softwa
 * Monitoramento e análise dos dados gerados pela interação usuário-aplicação, uma alternativa seria o (**Google Analytics**)[https://www.google.com.br/intl/pt-BR_ALL/analytics/learn/index.html]  
 
 
+<h3>Projeto desenvolvido pela equipe Chuhaskell</h3>
 <p align="center">
-  <h3>Projeto desenvolvido pela equipe Chuhaskell</h3>
   <img src="prints/chuhaskell.jpg">
 </p>
