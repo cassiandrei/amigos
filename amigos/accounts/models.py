@@ -51,8 +51,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 # Relacoes entre amigos
 class Match(models.Model):
     points = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    match = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.IntegerField(null=False)
+    match_id = models.IntegerField(null=False)
 
     class Meta:
         verbose_name = "Match"
