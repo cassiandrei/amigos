@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^alterar-senha/$', views.update_password, name='update_password'),
     url(r'^registro/$', views.register, name='register'),
     url(r'^perfil/$', views.perfil, name='perfil'),
+    url(r'^friend_perfil/(?P<id>\w+)/$', views.friend_perfil, name='friend_perfil'),
 ]

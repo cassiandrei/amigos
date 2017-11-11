@@ -8,6 +8,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from .models import User
 from .forms import UserAdminCreationForm
 from django.contrib import messages
+from accounts.models import BookUser, GameUser, VideoUser, MusicUser
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -15,7 +16,41 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
 
 def perfil(request):
-    return render(request, 'accounts/perfil/perfil.html')
+    books = []
+    games = []
+    videos = []
+    musics = []
+    for i in BookUser.objects.filter(user=request.user):
+        n = BookUser.objects.filter(book_id=i.id).count()
+        books.append([i.book, n-1])
+    for i in GameUser.objects.filter(user=request.user):
+        n = GameUser.objects.filter(game_id=i.id).count()
+        games.append([i.game,n-1])
+    for i in VideoUser.objects.filter(user=request.user):
+        n = VideoUser.objects.filter(video_id=i.id).count()
+        videos.append([i.video,n-1])
+    for i in MusicUser.objects.filter(user=request.user):
+        n = MusicUser.objects.filter(music_id=i.id).count()
+        musics.append([i.music,n-1])
+    return render(request, 'accounts/perfil/perfil.html', {'books': books,'games': games,'videos':videos,'musics':musics})
+
+
+def friend_perfil(request, id):
+    user = User.objects.get(id=id)
+    books = []
+    games = []
+    videos = []
+    musics = []
+    for i in BookUser.objects.filter(user=user):
+        books.append(i.book)
+    for i in GameUser.objects.filter(user=user):
+        games.append(i.game)
+    for i in VideoUser.objects.filter(user=user):
+        videos.append(i.video)
+    for i in MusicUser.objects.filter(user=user):
+        musics.append(i.music)
+    return render(request, 'accounts/perfil/perfil.html',
+                  {'books': books, 'games': games, 'videos': videos, 'musics': musics, 'user': user})
 
 
 def register(request):

@@ -22,31 +22,29 @@
 {% block body %}
     <div class="container">
         <div class="main_container">
-
-{#            {% block sidebar %}#}
-{#                <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">#}
-{#                    {% include "partial/sidebar.html" %}#}
-{#                </div>#}
-{#            {% endblock sidebar %}#}
-
-{#            {% block top_navigation %}#}
-{#                <div class="top_nav">#}
-{#                    {% include "partial/top_navegation.html" %}#}
-{#                </div>#}
-{#            {% endblock top_navigation %}#}
-
-            <div class="right_col" role="main">
-                <div class="">
-{#                    <div class="page-title">#}
-{#                        <div class="title_left">#}
-{#                            <h3>{% block titulo %}{% endblock %}</h3>#}
-{#                        </div>#}
+            {% block top_navigation %}
+                <div class="top_nav">
+                    {% include "partial/top_navegation.html" %}
+                </div>
+            {% endblock top_navigation %}
+{#            {%  block buttons_perfil %}#}
+{#                <div class="img-circle">#}
+{#                    <div class="container" style="padding: 100px!important;">#}
+{#                        <a href="{% if VOLTAR_URL %}{{ VOLTAR_URL }}{% else %}javascript:history.go(-1){% endif %}">#}
+{#                            <i class="fa fa-arrow-circle-left grow" style="font-size: 35px; position: absolute; top: 280px;"></i>#}
+{#                        </a>#}
+{#                        <a data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-wrench" style="font-size: 28px; position: absolute; top: 280px;"></i></a>#}
 {#                    </div>#}
+{#                </div>#}
+{#            {% endblock buttons_perfil %}#}
+            <div class="right_col" role="main">
                     <div class="clearfix"></div>
                     {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
+                        <div style="margin-top: 40px!important;">
+                            <div class="alert alert-{{ message.tags }}">
+                                {{ message }}
+                            </div>
+                        </div>
                     {% endfor %}
                     {% block content %}
                         <!-- {{ content }} -->
@@ -60,10 +58,8 @@
 {#            {% endblock footer %}#}
         </div>
     </div>
-
     {% block javascripts %}
          {% include "partial/scripts.html" %}
-
     {% endblock %}
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.js' %}"></script>

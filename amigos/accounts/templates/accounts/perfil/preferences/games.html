@@ -15,7 +15,9 @@
         </div>
         <div class="x_content" style="text-align: left">
             <br />
-            <p>Nome: ipsum</p>
+            {% for i in games %}
+                <p><b>{{ i.0 }}</b> - ( {{ i.1 }} ) pessoa(s) também curtiram.</p>
+            {%  endfor %}
             <!--
             <p>lorem ipsum</p>
             <p>lorem ipsum</p>
