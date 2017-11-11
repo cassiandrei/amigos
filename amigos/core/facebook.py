@@ -42,5 +42,8 @@ def get_likes(token, items):
         requisition = requests.get(url).text
         partial_list = json.loads(requisition)
         full_list += partial_list['data']
-        url = partial_list["paging"].get("next")
+        if partial_list.get("paging") and partial_list["paging"].get("next"):
+            url = partial_list["paging"]["next"]
+        else:
+            url = None
     return full_list

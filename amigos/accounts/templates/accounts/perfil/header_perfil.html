@@ -1,0 +1,10 @@
+{% load static %}
+<header class="parallax" style="background-image: url({% static 'build/images/icon_boy.png'%});">
+    <div class="img-circle">
+        <div class="container" style="padding: 100px!important;">
+            <img src="{% static 'build/images/icon_boy.png'%}" class="img-circle" alt="Cinque Terre" width="130" height="130"/>
+            <a data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-wrench"></i></a>
+        </div>
+    </div>
+</header>
+{% include "accounts/perfil/modal_editar_img.html" %}
