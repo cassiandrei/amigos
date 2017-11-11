@@ -1,7 +1,7 @@
 import requests, json
 
 GRAPH_URL = "http://graph.facebook.com/"
-ACCESS_TOKEN_FIELD = "access_token="
+ACCESS_TOKEN_FIELD = "?access_token="
 CLIENT_ID = "1625366447519489"
 CLIENT_SECRET = "d94c27f2b5cf98b53a4b53488ace6161"
 SCOPE = "public_profile,email,user_about_me,user_actions.books,user_actions.music,user_actions.video,user_birthday,user_friends,user_likes"
@@ -23,33 +23,23 @@ def get_token(url, code):
     return json.loads(requisition.text)
 
 def get_user_info(token):
-    requisition = requests.get(GRAPH_URL + "me?" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture")
+    requisition = requests.get(GRAPH_URL + "me" + ACCESS_TOKEN_FIELD + token + "&fields=name,email,gender,cover,picture")
     user_info = json.loads(requisition)
     user_info["cover"] = user_info["cover"]["source"]
     user_info["profile"] = user_info["profile"]["source"]
     return user_info
 
-def get_movies(token):
-    requisition = requests.get(GRAPH_URL + "me/movies?" + ACCESS_TOKEN_FIELD + token)
-    movies = json.loads(requisition)
-    return movies['data']
-
-def get_books(token):
-    requisition = requests.get(GRAPH_URL + "me/books?" + ACCESS_TOKEN_FIELD + token)
-    books = json.loads(requisition)
-    return books['data']
-
-def get_television(token):
-    requisition = requests.get(GRAPH_URL + "me/television?" + ACCESS_TOKEN_FIELD + token)
-    television = json.loads(requisition)
-    return television['data']
-
-def get_games(token):
-    requisition = requests.get(GRAPH_URL + "me/games?" + ACCESS_TOKEN_FIELD + token)
-    games = json.loads(requisition)
-    return games['data']
-
-def get_music(token):
-    requisition = requests.get(GRAPH_URL + "me/music?" + ACCESS_TOKEN_FIELD + token)
-    music = json.loads(requisition)
-    return music['data']
+def get_likes(token, items):
+    """
+    Itens possiveis: movies, games, television, music, books
+    """
+    if items not in ("movies", "games", "television", "music", "books"):
+        return None
+    full_list = []
+    url = GRAPH_URL + "me/" + items + ACCESS_TOKEN_FIELD + token
+    while url is not None:
+        requisition = requests.get(url)
+        partial_list += json.loads(requisition)
+        full_list += partial_list[data]
+        url = partial_list["paging"].get("next"):
+    return full_list
