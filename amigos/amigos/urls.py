@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^sair/$', logout, {'next_page': 'index'}, name='logout'),
     url(r'^conta/', include('accounts.urls', namespace='accounts')),
     url(r'^admin/', admin.site.urls),
+    url(r'^oauth2/', views.oauth2, name='oauth2')
 ]
 
 if settings.DEBUG:
