@@ -14,6 +14,10 @@ class IndexView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/index.html'
 
 
+def perfil(request):
+    return render(request, 'accounts/perfil/perfil.html')
+
+
 def register(request):
     form = UserAdminCreationForm()
     if request.method == 'POST':
